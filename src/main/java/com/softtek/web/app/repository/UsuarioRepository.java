@@ -11,5 +11,5 @@ public interface UsuarioRepository {
 	public List<Usuario> findAll();
 
 	public List<Usuario> findByUsuario(String usuario);
-
+	
 }

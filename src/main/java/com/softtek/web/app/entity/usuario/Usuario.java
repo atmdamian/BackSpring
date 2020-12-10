@@ -1,9 +1,8 @@
 package com.softtek.web.app.entity.usuario;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,18 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.softtek.web.app.model.usuario.resultado.Resultado;
 
 @Entity
 @Table(name = "usuarios")
 @NamedQueries(value = {
-		@NamedQuery(name="find_all_usuarios", query = "SELECT us FROM Usuario us"),
+		@NamedQuery(name="find_all_usuarios", query = "SELECT us FROM Usuario us INNER JOIN us.rol rol"),
 		@NamedQuery(name="find_by_usuario", query = "SELECT us FROM Usuario us WHERE us.usuario = :usuario ")
-		
 })
 public class Usuario implements Serializable {
 
@@ -41,6 +37,8 @@ public class Usuario implements Serializable {
 	
 	private String pw;
 
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario",cascade=CascadeType.PERSIST)
+	private Rol rol;
 	
 	//@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
 	//private Resultado resultado;
@@ -93,6 +91,15 @@ public class Usuario implements Serializable {
 
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+
+	
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 
 	@Override
