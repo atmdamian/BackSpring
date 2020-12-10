@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +29,10 @@ import com.softtek.web.app.service.UsuarioService;
 class SofttekAppWebBackApplicationTests {
 	private static Logger LOGGER = LoggerFactory.getLogger( SofttekAppWebBackApplicationTests.class);
 
-	@Autowired
+	@Mock
 	UsuarioService usuarioService;
 	
-	@Autowired		
+	@InjectMocks		
 	private UsuarioController usuarioController;
 
 	@Test
