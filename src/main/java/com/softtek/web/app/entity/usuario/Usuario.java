@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "usuarios")
 @NamedQueries(value = {
-		@NamedQuery(name="find_all_usuarios", query = "SELECT us FROM Usuario us INNER JOIN us.rol rol"),
+		@NamedQuery(name="find_all_usuarios", query = "SELECT us FROM Usuario us"),
 		@NamedQuery(name="find_by_usuario", query = "SELECT us FROM Usuario us WHERE us.usuario = :usuario ")
 })
 public class Usuario implements Serializable {

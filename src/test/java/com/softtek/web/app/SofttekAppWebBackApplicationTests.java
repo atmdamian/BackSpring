@@ -2,7 +2,6 @@ package com.softtek.web.app;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ import com.softtek.web.app.service.UsuarioService;
 
 @SpringBootTest
 class SofttekAppWebBackApplicationTests {
-	private static Logger LOGGER = LoggerFactory.getLogger( SofttekAppWebBackApplicationTests.class);
+	/*private static Logger LOGGER = LoggerFactory.getLogger( SofttekAppWebBackApplicationTests.class);
 
 	@Mock
 	UsuarioService usuarioService;
@@ -91,7 +90,11 @@ class SofttekAppWebBackApplicationTests {
 		Assert.assertEquals("200", response.getEstatus());	
 	}
 	
+	@Test
+	public void obtenerUsuario_test() {
+		List<Usuario> usuarios = usuarioController.obtenerUsuarios();
+		Assert.assertNotNull(usuarios);
+	}
 	
-	
-
+	*/
 }

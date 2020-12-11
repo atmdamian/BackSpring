@@ -19,9 +19,12 @@ import com.softtek.web.app.entity.usuario.Usuario;
 import com.softtek.web.app.response.ResponseMethod;
 import com.softtek.web.app.service.UsuarioService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @RequestMapping("api/usuario")
 @CrossOrigin
+@Api(value = "Usuario Controller", description = "Registrar Usuarios")
 public class UsuarioController {
 
 	@Autowired

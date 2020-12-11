@@ -20,9 +20,12 @@ import com.softtek.web.app.model.Multiplicacion;
 import com.softtek.web.app.response.ResponseMethod;
 import com.softtek.web.app.service.UsuarioService;
 
+import io.swagger.annotations.Api;
+
 @RestController
 @CrossOrigin
 @RequestMapping("api/multiplicador")
+@Api(value = "Multiplicador Controller", description = "Registrar Multiplicacion")
 public class MultiplicadorController {
 	
 	@Autowired
