@@ -20,7 +20,7 @@ public class SofttekAppWebBackApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(SofttekAppWebBackApplication.class, args);
 	}
-
+	// integracion swagger
 	@Bean
 	public Docket productApi() {
 		return new Docket(DocumentationType.SWAGGER_2).useDefaultResponseMessages(false).select()
