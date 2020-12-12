@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -37,7 +38,7 @@ public class Usuario implements Serializable {
 	
 	private String pw;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario",cascade=CascadeType.PERSIST)
+	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)  
 	private Rol rol;
 	
 	//@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
@@ -93,7 +94,6 @@ public class Usuario implements Serializable {
 		this.pw = pw;
 	}
 
-	
 	public Rol getRol() {
 		return rol;
 	}
@@ -102,11 +102,8 @@ public class Usuario implements Serializable {
 		this.rol = rol;
 	}
 
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nombre=" + nombre + ", usuario=" + usuario + ", pw=" + pw + "]";
-	}
-
+	
+	
 	
 	
 }
