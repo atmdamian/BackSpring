@@ -17,9 +17,11 @@ import org.springframework.test.annotation.DirtiesContext;
 
 import com.google.gson.Gson;
 import com.softtek.web.app.controller.UsuarioController;
+import com.softtek.web.app.entity.producto.Producto;
 import com.softtek.web.app.entity.usuario.Usuario;
 import com.softtek.web.app.response.ResponseMethod;
 import com.softtek.web.app.service.UsuarioService;
+import com.softtek.web.app.service.producto.ProductoService;
 
 @SpringBootTest
 class SofttekAppWebBackApplicationTests {
@@ -28,6 +30,9 @@ class SofttekAppWebBackApplicationTests {
 	@Mock
 	UsuarioService usuarioService;
 
+	@Mock
+	ProductoService productoService;
+	
 	@InjectMocks
 	private UsuarioController usuarioController;
 
@@ -92,4 +97,11 @@ class SofttekAppWebBackApplicationTests {
 		Assert.assertNotNull(usuarios);
 	}
 
+	@Test
+	@DirtiesContext
+	public void finadAllProductoTest() {
+		LOGGER.info("TEST UNITARIO FINDALLPRODUCTO");
+		List<Producto> productos = this.productoService.findAll();
+		Assert.assertNotNull(productos);
+	}
 }
