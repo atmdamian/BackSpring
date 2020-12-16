@@ -23,31 +23,71 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 	public void save(Usuario usuario) {
 		// entityManager.persist(usuario.getResultado());
 		EntityTransaction transaction = entityManager.getTransaction();
-		transaction.begin();
-		
-		entityManager.persist(usuario);
-		
-		entityManager.flush();
-		entityManager.refresh(usuario);
-		transaction.commit();
-		entityManager.close();
-		
+		try {
+			transaction.begin();
+			entityManager.persist(usuario);
+			transaction.commit();
+			entityManager.refresh(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			entityManager.close();
+		}
+
+		// entityManager.refresh(usuario);
+
 	}
 
 	@Transactional(readOnly = true)
 	@Override
 	public List<Usuario> findAll() {
-		TypedQuery<Usuario> query = entityManager.createNamedQuery("find_all_usuarios", Usuario.class);
-		entityManager.close();
-		return query.getResultList();
+		entityManager.clear();
+		entityManager.flush();
+
+		try {
+			TypedQuery<Usuario> query = entityManager.createNamedQuery("find_all_usuarios", Usuario.class);
+			entityManager.close();
+			return query.getResultList();
+		} catch (javax.persistence.NoResultException ex) {
+			return null;
+		} finally {
+			entityManager.close();
+		}
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public List<Usuario> findByUsuario(String usuario) {
-		TypedQuery<Usuario> query = entityManager.createNamedQuery("find_by_usuario", Usuario.class);
-		query.setParameter("usuario", usuario);
-		return query.getResultList();
+		entityManager.clear();
+		entityManager.flush();
+		try {
+			TypedQuery<Usuario> query = entityManager.createNamedQuery("find_by_usuario", Usuario.class);
+			query.setParameter("usuario", usuario);
+			return query.getResultList();
+		} catch (javax.persistence.NoResultException ex) {
+			return null;
+		} finally {
+			entityManager.close();
+		}
+
+	}
+
+	@Override
+	@Transactional
+	public void delete(Integer idUsuario) {
+		EntityTransaction transaction = entityManager.getTransaction();
+
+		try {
+			transaction.begin();
+			Usuario usuario = entityManager.find(Usuario.class, idUsuario);
+			entityManager.remove(usuario);
+			transaction.commit();
+			entityManager.refresh(usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			entityManager.close();
+		}
 	}
 
 }

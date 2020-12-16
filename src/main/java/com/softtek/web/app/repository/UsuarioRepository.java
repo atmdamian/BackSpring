@@ -12,4 +12,6 @@ public interface UsuarioRepository {
 
 	public List<Usuario> findByUsuario(String usuario);
 	
+	public void delete(Integer id);
+	
 }
