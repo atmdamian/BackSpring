@@ -16,29 +16,27 @@ import javax.persistence.Table;
 import com.softtek.web.app.entity.usuario.Usuario;
 
 @Entity
-@Table(name="productos")
-@NamedQueries(value = {
-		@NamedQuery(name="find_all_productos", query = "SELECT p FROM Producto p")
-})
-public class Producto implements Serializable{
+@Table(name = "productos")
+@NamedQueries(value = { @NamedQuery(name = "find_all_productos", query = "SELECT p FROM Producto p") })
+public class Producto implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String producto;
-	
+
 	private String precio;
-	
+
 	private String descripcion;
-	
-	@ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-	private Usuario usuario;
+
+	// @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
+	// private Usuario usuario;
 
 	public Integer getId() {
 		return id;
@@ -72,21 +70,16 @@ public class Producto implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+	/*
+	 * public Usuario getUsuario() { return usuario; }
+	 * 
+	 * public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+	 */
 
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", producto=" + producto + ", precio=" + precio + ", descripcion=" + descripcion
-				+ ", usuario=" + usuario + "]";
+				+ "]";
 	}
-	
-	
-	
 
 }

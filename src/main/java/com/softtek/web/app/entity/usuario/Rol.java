@@ -2,13 +2,10 @@ package com.softtek.web.app.entity.usuario;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -46,6 +43,10 @@ public class Rol implements Serializable {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	@Override
+	public String toString() {
+		return "Rol [id=" + id + ", rol=" + rol + ", descripcion=" + descripcion + "]";
 	}
 
 	
