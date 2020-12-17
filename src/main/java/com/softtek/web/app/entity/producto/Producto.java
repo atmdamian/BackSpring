@@ -13,6 +13,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.softtek.web.app.entity.usuario.Usuario;
 
 @Entity
@@ -24,12 +25,12 @@ public class Producto implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String producto;
+	private String nombre;
 
 	private String precio;
 
@@ -45,13 +46,13 @@ public class Producto implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-	public String getProducto() {
-		return producto;
+	
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setProducto(String producto) {
-		this.producto = producto;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getPrecio() {
@@ -70,16 +71,18 @@ public class Producto implements Serializable {
 		this.descripcion = descripcion;
 	}
 
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion
+				+ "]";
+	}
+
 	/*
 	 * public Usuario getUsuario() { return usuario; }
 	 * 
 	 * public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 	 */
 
-	@Override
-	public String toString() {
-		return "Producto [id=" + id + ", producto=" + producto + ", precio=" + precio + ", descripcion=" + descripcion
-				+ "]";
-	}
+	
 
 }

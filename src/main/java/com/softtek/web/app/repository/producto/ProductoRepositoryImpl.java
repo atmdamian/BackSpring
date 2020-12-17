@@ -13,37 +13,28 @@ import org.springframework.transaction.annotation.Transactional;
 import com.softtek.web.app.entity.producto.Producto;
 
 @Repository
-public class ProductoRepositoryImpl  implements ProductoRepository{
- 
+public class ProductoRepositoryImpl implements ProductoRepository {
+
 	@PersistenceContext
 	EntityManager entityManager;
-	
-	
+
 	@Transactional(readOnly = true)
 	@Override
 	public List<Producto> findAll() {
 		TypedQuery<Producto> query = entityManager.createNamedQuery("find_all_productos", Producto.class);
-		entityManager.close();
 		return query.getResultList();
 	}
 
 	@Transactional
 	@Override
-	public void save(Producto producto) {
-		// TODO Auto-generated method stub
+	public void save(Producto producto) {	
 		
-		EntityTransaction transaction = entityManager.getTransaction();
-		try {
-			transaction.begin();
+		try {			
 			entityManager.persist(producto);
-			transaction.commit();
-			entityManager.refresh(producto);
 		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			entityManager.close();
-	}
-	
+		e.printStackTrace();
+		} 
+
 	}
 
 }

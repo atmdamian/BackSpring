@@ -21,11 +21,7 @@ public class ProductoServiceImpl implements ProductoService {
 
 	@Override
 	public void save(Producto producto) {
-		// TODO Auto-generated method stub
-		
 		productoRepository.save(producto);
-
-		
 		
 	}
 	
