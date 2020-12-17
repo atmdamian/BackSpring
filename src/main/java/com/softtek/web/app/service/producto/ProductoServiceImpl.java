@@ -18,5 +18,15 @@ public class ProductoServiceImpl implements ProductoService {
 	public List<Producto> findAll() {
 		return productoRepository.findAll();
 	}
+
+	@Override
+	public void save(Producto producto) {
+		// TODO Auto-generated method stub
+		
+		productoRepository.save(producto);
+
+		
+		
+	}
 	
 }

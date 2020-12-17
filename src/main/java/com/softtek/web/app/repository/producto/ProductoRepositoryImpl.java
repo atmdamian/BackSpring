@@ -3,6 +3,7 @@ package com.softtek.web.app.repository.producto;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
@@ -25,7 +26,24 @@ public class ProductoRepositoryImpl  implements ProductoRepository{
 		entityManager.close();
 		return query.getResultList();
 	}
+
+	@Transactional
+	@Override
+	public void save(Producto producto) {
+		// TODO Auto-generated method stub
+		
+		EntityTransaction transaction = entityManager.getTransaction();
+		try {
+			transaction.begin();
+			entityManager.persist(producto);
+			transaction.commit();
+			entityManager.refresh(producto);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			entityManager.close();
+	}
 	
-	
+	}
 
 }
