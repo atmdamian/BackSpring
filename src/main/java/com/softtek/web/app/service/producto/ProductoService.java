@@ -9,7 +9,13 @@ public interface ProductoService {
 	
 	public List<Producto> findAll();
 	
-	public void save(Producto producto);
+	public Producto findById(Integer id);
+	
+	public Producto save(Producto producto);
+	
+	public void delete(Integer id);
+	
+	
 
 
 }

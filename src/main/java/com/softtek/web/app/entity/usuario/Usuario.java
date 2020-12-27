@@ -1,8 +1,10 @@
 package com.softtek.web.app.entity.usuario;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,9 +13,13 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.softtek.web.app.enums.Pais;
 
 
 @Entity
@@ -35,12 +41,24 @@ public class Usuario implements Serializable {
 
 	private String nombre;
 	
+	private String apellido;
+	
 	private String usuario;
 	
+	private Pais pais;
+	
+	@Column(name = "fecha_nacimiento")
+	@Temporal(TemporalType.DATE)
+	private Date fechaNacimiento;
+	
 	private String pw;
+	
+	@Column(name = "fecha_creacion")
+	@Temporal(TemporalType.DATE)
+	private Date fechaCreacion;
 
-	@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)  
-	private Rol rol;
+	//@OneToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)  
+	//private Rol rol;
 	
 	//@OneToOne(fetch = FetchType.LAZY, mappedBy = "usuario")
 	//private Resultado resultado;
@@ -60,8 +78,13 @@ public class Usuario implements Serializable {
 
 	public void removeCorreos(Correo correo) {
 		this.correos.remove(correo);
+	
 	}*/
 
+	@PrePersist
+	public void prePersist() {
+		this.fechaCreacion = new Date();
+	}
 	
 	public Integer getId() {
 		return id;
@@ -95,12 +118,44 @@ public class Usuario implements Serializable {
 		this.pw = pw;
 	}
 
-	public Rol getRol() {
+	/*public Rol getRol() {
 		return rol;
 	}
 
 	public void setRol(Rol rol) {
 		this.rol = rol;
+	}*/
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Pais getPais() {
+		return pais;
+	}
+
+	public void setPais(Pais pais) {
+		this.pais = pais;
+	}
+
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
 	

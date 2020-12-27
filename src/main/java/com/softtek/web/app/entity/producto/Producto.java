@@ -3,6 +3,7 @@ package com.softtek.web.app.entity.producto;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -30,14 +31,22 @@ public class Producto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name="nombre_imagen")
+	private String nombreImagen;
+	
+	@Column(nullable = false)
 	private String nombre;
-
+	
+	@Column(nullable = false)
 	private String precio;
 
 	private String descripcion;
+	
 
 	// @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
 	// private Usuario usuario;
+	
+	
 
 	public Integer getId() {
 		return id;
@@ -69,6 +78,15 @@ public class Producto implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+
+	public String getNombreImagen() {
+		return nombreImagen;
+	}
+
+	public void setNombreImagen(String nombreImagen) {
+		this.nombreImagen = nombreImagen;
 	}
 
 	@Override

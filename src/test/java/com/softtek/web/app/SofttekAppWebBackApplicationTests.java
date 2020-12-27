@@ -25,7 +25,7 @@ import com.softtek.web.app.service.producto.ProductoService;
 
 @SpringBootTest
 class SofttekAppWebBackApplicationTests {
-	private static Logger LOGGER = LoggerFactory.getLogger(SofttekAppWebBackApplicationTests.class);
+	/*private static Logger LOGGER = LoggerFactory.getLogger(SofttekAppWebBackApplicationTests.class);
 
 	@Mock
 	UsuarioService usuarioService;
@@ -103,5 +103,5 @@ class SofttekAppWebBackApplicationTests {
 		LOGGER.info("TEST UNITARIO FINDALLPRODUCTO");
 		List<Producto> productos = this.productoService.findAll();
 		Assert.assertNotNull(productos);
-	}
+	}*/
 }
