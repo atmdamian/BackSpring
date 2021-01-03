@@ -2,20 +2,16 @@ package com.softtek.web.app.entity.producto;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.softtek.web.app.entity.usuario.Usuario;
 
 @Entity
 @Table(name = "productos")
@@ -28,6 +24,7 @@ public class Producto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@JsonIgnore
 	@Id
+	@Column(name="producto_id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
@@ -43,10 +40,7 @@ public class Producto implements Serializable {
 	private String descripcion;
 	
 
-	// @ManyToOne(fetch = FetchType.EAGER,cascade=CascadeType.ALL)
-	// private Usuario usuario;
-	
-	
+
 
 	public Integer getId() {
 		return id;
@@ -89,18 +83,5 @@ public class Producto implements Serializable {
 		this.nombreImagen = nombreImagen;
 	}
 
-	@Override
-	public String toString() {
-		return "Producto [id=" + id + ", nombre=" + nombre + ", precio=" + precio + ", descripcion=" + descripcion
-				+ "]";
-	}
-
-	/*
-	 * public Usuario getUsuario() { return usuario; }
-	 * 
-	 * public void setUsuario(Usuario usuario) { this.usuario = usuario; }
-	 */
-
 	
-
 }
