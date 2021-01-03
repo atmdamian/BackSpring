@@ -9,48 +9,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.softtek.web.app.enums.Sesion;
-
 @Entity
-@Table(name ="roles")
-public class Rol implements Serializable {
+@Table(name="contactos")
+public class Contacto implements Serializable {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
 	
 	@Id
-	@Column(name="rol_id")
+	@Column(name="id_contacto")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Sesion sesion;
-	private String descripcion;
 	
+	private String telefono;
+	
+	private String email;
 
-	
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	public Sesion getSesion() {
-		return sesion;
+
+	public String getTelefono() {
+		return telefono;
 	}
-	public void setSesion(Sesion sesion) {
-		this.sesion = sesion;
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
 	}
-	public String getDescripcion() {
-		return descripcion;
+
+	public String getEmail() {
+		return email;
 	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Contacto [id=" + id + ", telefono=" + telefono + ", email=" + email + "]";
+	}
 	
 	
 

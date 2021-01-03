@@ -1,8 +1,11 @@
 package com.softtek.web.app;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -19,6 +22,8 @@ import com.google.gson.Gson;
 import com.softtek.web.app.controller.UsuarioController;
 import com.softtek.web.app.entity.producto.Producto;
 import com.softtek.web.app.entity.usuario.Usuario;
+import com.softtek.web.app.jms.Receiver;
+import com.softtek.web.app.jms.Sender;
 import com.softtek.web.app.response.ResponseMethod;
 import com.softtek.web.app.service.UsuarioService;
 import com.softtek.web.app.service.producto.ProductoService;
@@ -32,11 +37,17 @@ class SofttekAppWebBackApplicationTests {
 
 	@Mock
 	ProductoService productoService;
-	
+
 	@InjectMocks
 	private UsuarioController usuarioController;
 
-	@Test
+	@Mock
+	private Sender sender;
+
+	@Mock
+	private Receiver receiver;
+
+	/*@Test
 	@DirtiesContext
 	public void saveTest() {
 		LOGGER.info("TEST UNITARIO SAVE PERSIST");
@@ -103,5 +114,13 @@ class SofttekAppWebBackApplicationTests {
 		LOGGER.info("TEST UNITARIO FINDALLPRODUCTO");
 		List<Producto> productos = this.productoService.findAll();
 		Assert.assertNotNull(productos);
+	}*/
+
+	@Test
+	public void testReceive() throws Exception {
+		sender.send("Hello Spring JMS ActiveMQ!");
+
+		receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
+		assertThat(receiver.getLatch().getCount()).isEqualTo(0);
 	}
 }

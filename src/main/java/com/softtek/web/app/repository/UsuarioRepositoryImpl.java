@@ -1,6 +1,7 @@
 package com.softtek.web.app.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.softtek.web.app.entity.usuario.Usuario;
+import com.softtek.web.app.model.UsuarioDomicilio;
 
 @Repository
 public class UsuarioRepositoryImpl implements UsuarioRepository {
@@ -19,15 +21,14 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 
 	@Override
 	@Transactional
-	public void save(Usuario usuario) {		
-		try {		
-			entityManager.persist(usuario);		
+	public void save(Usuario usuario) {
+		try {
+			entityManager.persist(usuario);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-
 	@Transactional(readOnly = true)
 	@Override
 	public List<Usuario> findAll() {
@@ -36,16 +37,16 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 			return query.getResultList();
 		} catch (javax.persistence.NoResultException ex) {
 			return null;
-		} 
+		}
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Usuario> findByUsuario(String usuario) {
+	public Usuario findByUsuario(String nombreUsuario) {
 		try {
-			TypedQuery<Usuario> query = entityManager.createNamedQuery("find_by_usuario", Usuario.class);
-			query.setParameter("usuario", usuario);
-			return query.getResultList();
+			 return entityManager.createNamedQuery("find_by_usuario", Usuario.class)
+					 .setParameter("usuario", nombreUsuario).getSingleResult();
+			
 		} catch (javax.persistence.NoResultException ex) {
 			return null;
 		}
@@ -60,6 +61,16 @@ public class UsuarioRepositoryImpl implements UsuarioRepository {
 			entityManager.remove(usuario);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public List<Usuario> findAllWhitDomicilio() {
+		try {
+			TypedQuery<Usuario> query = entityManager.createNamedQuery("find_all_usuario_domicilio", Usuario.class);
+			return query.getResultList();
+		} catch (javax.persistence.NoResultException ex) {
+			return null;
 		}
 	}
 
