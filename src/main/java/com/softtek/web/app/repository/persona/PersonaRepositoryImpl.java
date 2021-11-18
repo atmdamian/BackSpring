@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.softtek.web.app.enums.QueryEnum;
 import com.softtek.web.app.model.Persona;
 
 @Repository
@@ -22,7 +23,7 @@ public class PersonaRepositoryImpl implements PersonaRepository{
 	@Override
 	public List<Persona> findAll() {
 		try {
-			Query query= entityManager.createQuery("SELECT p FROM Persona p");
+			Query query= entityManager.createQuery(QueryEnum.QUERY_CONSULTAR_PERSONA.getValor());
 			return query.getResultList();
 		} catch (javax.persistence.NoResultException ex) {
 			return null;
