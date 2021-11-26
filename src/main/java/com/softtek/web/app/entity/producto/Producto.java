@@ -39,9 +39,6 @@ public class Producto implements Serializable {
 
 	private String descripcion;
 	
-
-
-
 	public Integer getId() {
 		return id;
 	}

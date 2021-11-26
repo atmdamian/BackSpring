@@ -1,0 +1,60 @@
+:::::::::::::::::: OneToOne-OneToOne ::::::::::::::::::::::::
+[
+  {
+    "addres": {
+      "cveAddres": 0,
+      "nameAddres": "IXTLAHUACA"
+    },
+    "cveEmploye": 0,
+    "name": "BYANKA"
+  },
+{"addres": {
+      "cveAddres": 0,
+      "nameAddres": "SANTA "
+    },
+    "cveEmploye": 0,
+    "name": "DAMIAN"
+  },
+{"addres": {
+      "cveAddres": 0,
+      "nameAddres": "CRUZ"
+    },
+    "cveEmploye": 0,
+    "name": "SANTY"
+  }
+]
+
+:::::::::::::::::::::::: OneToMany
+
+[
+  {
+    "addres": [
+      {
+        "cveAddres": 0,
+        "nameAddres": "ixtla"
+      },
+{
+        "cveAddres": 0,
+        "nameAddres": "santa"
+      }
+
+    ],
+    "cveEmploye": 0,
+    "name": "damian"
+  },
+{
+    "addres": [
+      {
+        "cveAddres": 0,
+        "nameAddres": "Ixtlahuaca"
+      },
+{
+        "cveAddres": 0,
+        "nameAddres": "Santa cruz"
+      }
+
+    ],
+    "cveEmploye": 0,
+    "name": "byanka"
+  }
+]
